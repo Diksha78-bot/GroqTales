@@ -68,6 +68,9 @@ developmentChains.includes(network.name)
         const event = receipt.logs.find(
           (log) => log.fragment && log.fragment.name === "StoryMinted"
         );
+        if(!event){
+          throw new Error("StoryMinted event not found in transaction logs");
+        }
         const tokenId = event ? event.args[0] : BigInt(1);
         
         const storyContent = await monadStoryNFT.getStoryContent(tokenId);

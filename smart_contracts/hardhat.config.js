@@ -7,13 +7,13 @@ require("dotenv").config();
 
 const MONAD_TEST_RPC_URL =
   process.env.MONAD_TEST_RPC_URL ||
-  "https://eth-sepolia.g.alchemy.com/v2/YOUR-API-KEY";
+  "https://monad-testnet.g.alchemy.com/v2/YOUR-API-KEY";
 const MONAD_MAINNET_RPC_URL =
   process.env.MONAD_MAIN_RPC_URL ||
-  "https://eth-mainnet.g.alchemy.com/v2/YOUR-API-KEY";
+  "https://monad-testnet.g.alchemy.com/v2/YOUR-API-KEY";
 const PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY || "0x";
 const MONADSCAN_API_KEY =
-  process.env.MONADSCAN_API_KEY || "Your etherscan API key";
+  process.env.MONADSCAN_API_KEY || "Your monadscan API key";
 
 
 module.exports = {
@@ -35,11 +35,9 @@ module.exports = {
     monad_mainnet: {
         url: MONAD_MAINNET_RPC_URL,
         accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-          // accounts: {
-          //   mnemonic: MNEMONIC,
-          // },
-        saveDeployments: true,
         chainId: 143,
+        blockConfirmations: 6,
+        saveDeployments: true,
     },
   },
   monadscan: {
@@ -69,7 +67,7 @@ module.exports = {
     },
   },
   mocha: {
-    timeout: 500000, // 100 seconds max for running tests
+    timeout: 100000, // 100 seconds max for running tests
   },
 };
 

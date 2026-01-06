@@ -19,7 +19,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
 
   if (
     !developmentChains.includes(network.name) &&
-    process.env.ETHERSCAN_API_KEY
+    process.env.monadNftSCAN_API_KEY
   ) {
     log("Verifying ....");
     await verify(monadNft.target, args);
