@@ -46,7 +46,7 @@ export function Footer() {
   return (
     <footer className="relative mt-20">
       {/* Comic Container */}
-      <div className="bg-card border-t-4 border-foreground">
+      <div className="bg-card dark:bg-slate-950 border-t-4 border-foreground dark:border-slate-800 transition-colors duration-500">
         <div className="container mx-auto px-6 pt-16 pb-8">
           {/* Product of Indie Hub Section */}
           <div className="flex flex-col items-center justify-center mb-12 text-center">

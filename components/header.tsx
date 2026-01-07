@@ -120,7 +120,7 @@ export function Header() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       className={cn(
-        'border-b-4 border-black dark:border-gray-800 sticky top-0 z-50 transition-all duration-300 comic-text bg-[#36454F]',
+        'border-b-4 border-black dark:border-slate-800 sticky top-0 z-50 transition-all duration-300 bg-[#36454F] dark:bg-slate-950/80 dark:backdrop-blur-md',
         scrolled && 'shadow-[0px_4px_0px_0px_rgba(255,255,255,0.2)]'
       )}
     >

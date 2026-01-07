@@ -26,12 +26,19 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <main className="flex min-h-screen flex-col relative bg-yellow-50 dark:bg-slate-950 overflow-hidden">
+    <main className="flex min-h-screen flex-col relative bg-yellow-50 dark:dark-premium-bg overflow-hidden transition-colors duration-500">
+      {/* Premium Background Glows for Dark Mode */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-0 dark:opacity-100 transition-opacity duration-1000">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full" />
+        <div className="absolute top-[20%] right-[-10%] w-[35%] h-[35%] bg-purple-600/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[40%] bg-indigo-600/10 blur-[120px] rounded-full" />
+      </div>
+
       {/* Comic Halftone Background Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] dark:bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px] opacity-5 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] dark:bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.03] pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="relative py-24 border-b-8 border-foreground bg-yellow-400 dark:bg-yellow-900 overflow-hidden">
+      <section className="relative py-24 border-b-8 border-foreground bg-yellow-400 dark:bg-slate-900/80 dark:backdrop-blur-sm overflow-hidden transition-colors duration-500">
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2 space-y-8">
@@ -49,10 +56,10 @@ export default function Home() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-6xl md:text-8xl font-black text-foreground uppercase leading-none [text-shadow:4px_4px_0px_#fff,8px_8px_0px_#000]"
+                className="text-6xl md:text-8xl font-black text-foreground uppercase leading-none [text-shadow:4px_4px_0px_#fff,8px_8px_0px_#000] dark:[text-shadow:0_0_15px_rgba(59,130,246,0.4),0_0_30px_rgba(139,92,246,0.2)]"
               >
                 Create <br />
-                <span className="text-white [text-shadow:4px_4px_0px_#000]">
+                <span className="text-white dark:bg-gradient-to-r dark:from-cyan-400 dark:to-blue-500 dark:bg-clip-text dark:text-transparent [text-shadow:4px_4px_0px_#000] dark:[text-shadow:none] dark:drop-shadow-[0_0_12px_rgba(34,211,238,0.6)]">
                   Mint
                 </span>{' '}
                 <br />& Share
@@ -139,10 +146,10 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-20 bg-card border-b-8 border-foreground">
+      <section className="py-20 bg-card dark:bg-slate-900/40 dark:backdrop-blur-md border-b-8 border-foreground transition-colors duration-500">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black uppercase mb-4 [text-shadow:4px_4px_0px_var(--shadow-color)] text-white stroke-background text-stroke-2">
+            <h2 className="text-5xl md:text-7xl font-black uppercase mb-4 bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-300 dark:to-white bg-clip-text text-transparent [text-shadow:4px_4px_0px_rgba(0,0,0,0.05)] dark:[text-shadow:4px_4px_0px_rgba(255,255,255,0.05)]">
               Why GroqTales?
             </h2>
           </div>
@@ -153,19 +160,19 @@ export default function Home() {
                 title: 'AI Generation',
                 desc: 'Powered by Groq for lightning-fast story creation.',
                 icon: <Zap className="w-12 h-12" />,
-                color: 'bg-cyan-300',
+                color: 'bg-cyan-300 dark:bg-cyan-900/30',
               },
               {
                 title: 'NFT Ownership',
                 desc: 'Your stories are truly yours on the blockchain.',
                 icon: <Wallet className="w-12 h-12" />,
-                color: 'bg-magenta-300',
+                color: 'bg-pink-300 dark:bg-pink-900/30',
               },
               {
                 title: 'Community',
                 desc: 'Read, share, and trade with other creators.',
                 icon: <Sparkles className="w-12 h-12" />,
-                color: 'bg-green-300',
+                color: 'bg-green-300 dark:bg-green-900/30',
               },
             ].map((feature, i) => (
               <motion.div
@@ -189,7 +196,7 @@ export default function Home() {
       </section>
 
       {/* Trending Section */}
-      <section className="py-20 bg-pink-100 dark:bg-pink-900 border-b-8 border-foreground">
+      <section className="py-20 bg-pink-100 dark:bg-slate-900/60 dark:backdrop-blur-sm border-b-8 border-foreground transition-colors duration-500">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-4xl font-black uppercase bg-card border-4 border-foreground px-6 py-2 shadow-[6px_6px_0px_0px_var(--shadow-color)]">
@@ -206,7 +213,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-blue-600 dark:bg-blue-900 border-b-8 border-foreground text-center">
+      <section className="py-24 bg-blue-600 dark:bg-indigo-950/80 dark:backdrop-blur-md border-b-8 border-foreground text-center transition-colors duration-500">
         <div className="container mx-auto px-4">
           <h2 className="text-6xl md:text-8xl font-black text-white uppercase mb-8 [text-shadow:6px_6px_0px_#000]">
             Ready to Start?
