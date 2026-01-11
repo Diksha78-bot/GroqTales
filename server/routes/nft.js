@@ -36,7 +36,6 @@ router.post('/mint', async (req, res) => {
       tokenId: Date.now().toString(),
       storyId,
       metadata,
-      price,
       mintedAt: new Date().toISOString(),
     };
 
@@ -45,5 +44,15 @@ router.post('/mint', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.patch('list/:Id', async (req, res) => {});
+
+router.patch('remove/:Id', async (req, res) => {});
+
+router.patch('/buy/:Id', async (req, res) => {}); 
+
+router.patch('/update-price/:Id', async (req, res) => {});
+
+router.delete('/burn/:Id', async (req, res) => {});
 
 module.exports = router;
