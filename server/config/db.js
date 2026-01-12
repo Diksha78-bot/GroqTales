@@ -18,7 +18,7 @@ const connectDB = async (maxRetries = 5, retryDelayMs = 2000) => {
   for (let attempt = 1; attempt <= safeMaxRetries; attempt++) {
     try {
       console.log(
-        `[Mongoose] Connection attempt ${attempt}/${maxRetries} to ${sanitizedUri}`
+        `[Mongoose] Connection attempt ${attempt}/${safeMaxRetries} to ${sanitizedUri}`
       );
 
       const conn = await mongoose.connect(uri, {

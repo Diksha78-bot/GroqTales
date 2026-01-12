@@ -11,6 +11,7 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 
 const { connectDB, closeDB } = require('./config/db');
 
