@@ -5,13 +5,17 @@ const mongoose = require('mongoose');
  * Part of Issue #166: Database Connection Retries and Health Check Endpoint
  */
 const connectDB = async (maxRetries = 5, retryDelayMs = 2000) => {
+  // Ensure valid retry parameters
+  const safeMaxRetries = Math.max(1, Math.floor(maxRetries));
+  const safeRetryDelayMs = Math.max(100, retryDelayMs);
+
   const uri =
     process.env.MONGODB_URI || 'mongodb://localhost:27017/groqtales';
 
   // Sanitize URI for logging (hide credentials)
   const sanitizedUri = uri.replace(/\/\/[^@]+@/, '//*****:*****@');
 
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+  for (let attempt = 1; attempt <= safeMaxRetries; attempt++) {
     try {
       console.log(
         `[Mongoose] Connection attempt ${attempt}/${maxRetries} to ${sanitizedUri}`
@@ -32,17 +36,17 @@ const connectDB = async (maxRetries = 5, retryDelayMs = 2000) => {
         `[Mongoose] Attempt ${attempt}/${maxRetries} failed: ${errorMessage}`
       );
 
-      if (attempt === maxRetries) {
+      if (attempt === safeMaxRetries) {
         console.error(
           '[Mongoose] Max retries reached. Failed to establish connection.'
         );
         throw new Error(
-          `Failed to connect to MongoDB after ${maxRetries} attempts: ${errorMessage}`
+          `Failed to connect to MongoDB after ${safeMaxRetries} attempts: ${errorMessage}`
         );
       }
 
       // Calculate exponential backoff delay
-      const delay = retryDelayMs * Math.pow(2, attempt - 1);
+      const delay = safeRetryDelayMs * Math.pow(2, attempt - 1);
       console.log(`[Mongoose] Retrying in ${delay}ms...`);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
