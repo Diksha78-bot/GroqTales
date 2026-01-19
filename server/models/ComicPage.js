@@ -151,7 +151,6 @@ ComicPageSchema.post('save', async function () {
   await Comic.findByIdAndUpdate(this.comicId, { totalPages: count });
 });
 
-// Post-remove middleware to update comic's totalPages
 
 // Static utility to recalculate totalPages after bulk ops
 /**

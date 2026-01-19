@@ -1,9 +1,14 @@
 import { Network, Alchemy } from 'alchemy-sdk';
 
+
 const settings = {
   apiKey: process.env.ALCHEMY_API_KEY,
   network: Network.ETH_MAINNET,
 };
+
+if (!settings.apiKey) {
+  throw new Error('ALCHEMY_API_KEY environment variable is required');
+}
 
 const alchemy = new Alchemy(settings);
 
@@ -13,7 +18,7 @@ console.log('fetching NFTs for address:', ownerAddr);
 console.log('...');
 
 // Print total NFT count returned in the response:
-const nftsForOwner = await alchemy.nft.getNftsForOwner('vitalik.eth');
+const nftsForOwner = await alchemy.nft.getNftsForOwner(ownerAddr);
 console.log('number of NFTs found:', nftsForOwner.totalCount);
 console.log('...');
 
