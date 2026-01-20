@@ -1,7 +1,18 @@
 <!-- markdownlint-enable MD033 -->
 # Contributing to GroqTales
 
-[![SWOC'26](https://img.shields.io/badge/Program-SWOC'26-orange?style=flat-square)](docs/SWOC'26.md)
+<p align="center">
+  <img src="https://img.shields.io/badge/SWOC'26-Open%20Source-orange?style=flat-square" alt="SWOC'26"/>
+  <img src="https://img.shields.io/badge/GSSOC'25-Legacy-lightgrey?style=flat-square" alt="GSSOC'25"/>
+  <img src="https://img.shields.io/badge/FOSS%20Hack-Open%20Source-blue?style=flat-square" alt="FOSS Hack"/>
+  <img src="https://img.shields.io/badge/LGM--SOC-Open%20Source-purple?style=flat-square" alt="LGM-SOC"/>
+  <img src="https://img.shields.io/badge/MLH-Open%20Source-red?style=flat-square" alt="MLH"/>
+  <img src="https://img.shields.io/badge/HackinCodes-Open%20Source-green?style=flat-square" alt="HackinCodes"/>
+  <img src="https://img.shields.io/badge/cWoc-Open%20Source-ff69b4?style=flat-square" alt="cWoc"/>
+  <img src="https://img.shields.io/badge/Indie%20Hub-Main%20Partner-6e5494?style=flat-square" alt="Indie Hub"/>
+  <img src="https://img.shields.io/badge/Open%20Source%20Community-Welcome-0052cc?style=flat-square" alt="Open Source Community"/>
+</p>
+
 
 Thank you for your interest in contributing to **GroqTales**, an AI-powered Web3 storytelling platform! We welcome developers, writers, designers, and blockchain enthusiasts to help us build a creative, open, and secure platform. Please read this guide before getting started.
 
@@ -50,7 +61,7 @@ You can contribute in several ways:
 
 - **Reporting Bugs:** Use the `bug_report.md` template and provide detailed steps to reproduce.
 - **Suggesting Features:** Use the `feature.md` template to propose new ideas.
-- **Code Contributions:** Pick up issues labeled `good first issue`, `SWOC-Level-1`, `SWOC-Level-2`, or `SWOC-Level-3`.
+- **Code Contributions:** Pick up issues labeled `good first issue`.
 - **Web3/Blockchain:** Use the `web3_issue.md` template for Monad/NFT-related contributions.
 - **Security:** Use the `security.md` template for vulnerabilities.
 - **Documentation:** Help improve the README, Wiki, or code comments.
@@ -161,7 +172,7 @@ GroqTales/
    ```bash
    git clone https://github.com/<your-username>/GroqTales.git
    cd GroqTales
-   git remote add upstream https://github.com/Drago-03/GroqTales.git
+   git remote add upstream https://github.com/IndieHub25/GroqTales.git
    ```
    
 3. **Synchronize before starting work:**
@@ -196,7 +207,7 @@ GroqTales/
    ```
 
 9. **Open a Pull Request:**
-- Base: `Drago-03/GroqTales` `main`
+- Base: `IndieHub25/GroqTales` `main`
 - Head: `your-username:feature/improve-story-generator`
 - Fill out PR template completely
 - Link issue with `Fixes #<number>` where applicable
@@ -235,13 +246,13 @@ To ensure your contributions are tracked for **SWOC'26**, use the following labe
 ## Documentation
 - Update or add documentation for any new features or changes.
 - Add inline comments for complex logic.
-- Keep the [Wiki](https://github.com/Drago-03/GroqTales/wiki) up to date for setup, usage, and architecture.
+- Keep the [Wiki](https://github.com/IndieHub25/GroqTales/wiki) up to date for setup, usage, and architecture.
 
 ---
 
 ## Community & Support
 - **Discord:** [Join our Discord server](https://discord.gg/JK29FZRm) for real-time help and collaboration.
-- **Discussions:** Use [GitHub Discussions](https://github.com/Drago-03/GroqTales/discussions) for ideas and Q&A.
+- **Discussions:** Use [GitHub Discussions](https://github.com/IndieHub25/GroqTales/discussions) for ideas and Q&A.
 - **Security:** For vulnerabilities, see [SECURITY.md](./SECURITY.md).
 
 ---
