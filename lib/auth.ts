@@ -1,16 +1,11 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "@/lib/mongodb";
 import connectDB from "@/lib/mongoose";
-import { User } from "../models/User";
+import { User as UserModel } from "../models/User";
 import bcrypt from "bcryptjs";
-import type { MongoClient } from "mongodb";
 
 export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise as Promise<MongoClient>),
-
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -28,8 +23,8 @@ export const authOptions: NextAuthOptions = {
         }
 
         await connectDB();
-        
-        const user = await User.findOne({ email: credentials.email } as any).select("+password");
+
+        const user = await UserModel.findOne({ email: credentials.email }).select("+password");
 
         if (!user || !user.password) {
           throw new Error("Invalid credentials");
@@ -40,7 +35,11 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        return { id: user._id.toString(), email: user.email, name: user.displayName || user.username };
+        return {
+          id: user._id.toString(),
+          email: user.email,
+          name: user.displayName || user.username,
+        };
       },
     }),
   ],
@@ -50,6 +49,36 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === "google") {
+        
+        if (!user.email) {
+            return false;
+        }
+
+        try {
+          await connectDB();
+
+          const existingUser = await UserModel.findOne({ email: user.email });
+
+          if (!existingUser) {
+            await UserModel.create({
+              email: user.email,
+              displayName: user.name || "", 
+              image: user.image || "",
+              authProvider: "google",
+              googleId: account.providerAccountId,
+            });
+          }
+          return true;
+        } catch (error) {
+          console.error("Error checking or creating user: ", error);
+          return false;
+        }
+      }
+      return true;
+    },
+
     async session({ session, token }) {
       if (token && session.user) {
         // @ts-ignore
@@ -57,6 +86,7 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
+
     async jwt({ token, user }) {
       if (user) {
         token.sub = user.id;
@@ -67,8 +97,8 @@ export const authOptions: NextAuthOptions = {
 
   pages: {
     signIn: "/login",
-    error: "/login", 
+    error: "/login",
   },
-  
+
   secret: process.env.NEXTAUTH_SECRET,
 };

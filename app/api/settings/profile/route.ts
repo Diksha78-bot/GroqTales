@@ -28,28 +28,28 @@ export async function PATCH(req: Request) {
     const session = await getServerSession(authOptions);
     if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-const body = await req.json();
-const { username, displayName, bio, primaryGenre, website, location } = body;
+    const body = await req.json();
+    const { username, displayName, bio, primaryGenre } = body;
 
-if (bio && bio.length > 500) {
-  return NextResponse.json({ error: "Bio exceeds 500 characters" }, { status: 400 });
-}
+    if (bio && bio.length > 500) {
+      return NextResponse.json({ error: "Bio exceeds 500 characters" }, { status: 400 });
+    }
 
-await connectDB();
+    await connectDB();
 
-if (username) {
-  const existingUser = await User.findOne({ 
-    username, 
-    email: { $ne: session.user?.email } 
-  } as any);
-  
-  if (existingUser) return NextResponse.json({ error: "Username taken" }, { status: 409 });
-}
+    if (username) {
+      const existingUser = await User.findOne({ 
+        username, 
+        email: { $ne: session.user?.email } 
+      } as any);
+      
+      if (existingUser) return NextResponse.json({ error: "Username taken" }, { status: 409 });
+    }
 
-const updatedUser = await User.findOneAndUpdate(
-  { email: session.user?.email } as any,
-  { username, displayName, bio, primaryGenre, website, location },
-  { new: true } as any
+    const updatedUser = await User.findOneAndUpdate(
+      { email: session.user?.email } as any,
+      { username, displayName, bio, primaryGenre },
+      { new: true } as any
     ).select("-password");
 
     return NextResponse.json(updatedUser);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default async function SettingsPage() {
-  const session = await getServerSession();
+  const session = await getServerSession(authOptions);
   
   if (!session) {
     redirect("/login?callbackUrl=/settings");
