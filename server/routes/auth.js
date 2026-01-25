@@ -7,7 +7,7 @@ const { refresh } = require('../middleware/auth');
 
 const REFRESH_TIME_MS = ms(process.env.JWT_REFRESH_EXPIRES || '7d');
 
-// POST /api/v1/auth/signup - User login
+// POST /api/v1/auth/signup - User signup
 router.post('/signup', async (req, res) => {
   try {
     const {
@@ -16,7 +16,7 @@ router.post('/signup', async (req, res) => {
       firstName,
       lastName,
       role,
-      adminSecret = 'hello',
+      adminSecret,
     } = req.body;
 
     if (!email || !password || !firstName || !lastName || !role) {
@@ -36,7 +36,6 @@ router.post('/signup', async (req, res) => {
     let assignedRole = 'user';
 
     if (role === 'admin') {
-      const adminSecret = req.body.adminSecret;
       if (adminSecret !== process.env.ADMIN_SECRET) {
         return res.status(403).json({ error: 'Invalid admin secret' });
       }
@@ -131,5 +130,11 @@ router.post('/login', async (req, res) => {
 
 // POST /api/v1/auth/refresh - Refresh access token
 router.post('/refresh', refresh);
+
+// // POST /api/v1/auth/logout - User logout
+// router.post('/logout', async (req, res) => {});
+
+// // get /api/v1/auth/me - Get current user
+// router.get('/me', async (req, res) => {});
 
 module.exports = router;
