@@ -77,6 +77,8 @@ async function handleMintSaga(event: any) {
       );
     } else if (receipt.status === 'reverted') {
       throw new Error('Transaction reverted on chain');
+    } else {
+      throw new Error(`Transaction still pending (status: ${receipt.status}), will retry`);
     }
   }
 }
