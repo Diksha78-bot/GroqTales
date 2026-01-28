@@ -7,7 +7,7 @@ const mockUser = {
   displayName: "Alex The Creator",
   username: "alexcodes",
   bio: "Weaving AI dreams into Web3 reality. Sci-fi enthusiast and prompt engineer.",
-  walletAddress: "0x71C...9A23",
+  walletAddress: "0x71C0000000000000000000000000000000009A23",
   isOwner: true,
 };
 
