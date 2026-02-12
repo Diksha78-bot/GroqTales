@@ -119,7 +119,13 @@ router.get('/', async (req, res) => {
 // POST /api/v1/nft/mint
 router.post('/mint', authRequired, async (req, res) => {
   try {
-    const { storyId, metadataURI, metadata, price = 0, royaltyPercentage = 5, creatorWallet } = req.body;
+    const { storyId, metadataURI, metadata, price = 0, royaltyPercentage: rawRoyalty = 5, creatorWallet } = req.body;
+
+    // Validate royaltyPercentage is a valid number
+    const royaltyPercentage = Number(rawRoyalty);
+    if (!Number.isFinite(royaltyPercentage)) {
+      return res.status(400).json({ error: 'royaltyPercentage must be a valid number' });
+    }
 
     // Basic validation
     if (!storyId || !metadataURI) {

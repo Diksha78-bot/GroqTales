@@ -15,9 +15,21 @@ export async function GET(
 
     const { wallet } = params;
 
-    // TODO: Add wallet ownership verification once auth is implemented.
-    // Currently any caller can fetch transactions for any wallet address.
-    // Should verify that the authenticated user owns the requested wallet.
+    // Verify caller owns this wallet or has internal API access
+    const requestingWallet = request.headers.get('x-wallet-address')?.toLowerCase();
+    const internalKey = request.headers.get('x-internal-api-key');
+    const expectedKey = process.env.INTERNAL_API_KEY;
+
+    // Allow access if: internal API key matches OR requesting wallet matches params wallet
+    const isInternalCall = expectedKey && internalKey === expectedKey;
+    const isOwner = requestingWallet === wallet.toLowerCase();
+
+    if (!isInternalCall && !isOwner) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized - wallet mismatch or missing credentials' },
+        { status: 403 }
+      );
+    }
 
     if (!wallet) {
       return NextResponse.json(
