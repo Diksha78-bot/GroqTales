@@ -54,6 +54,7 @@ export function Header() {
           className="md:hidden text-white p-2 hover:opacity-80"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle mobile menu"
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
@@ -62,7 +63,7 @@ export function Header() {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden absolute top-20 left-0 right-0 border-t-4 border-black"
+          className="md:hidden absolute top-20 left-0 right-0 border-t-4 border-black z-50"
           style={{ backgroundColor: '#000000' }}
         >
           <nav className="flex flex-col p-6 gap-4">

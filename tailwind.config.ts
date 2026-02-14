@@ -69,7 +69,7 @@ const config: Config = {
         display: ['Permanent Marker', 'cursive'],
         impact: ['Big Shoulders Display', 'sans-serif'],
         subheading: ['Roboto Condensed', 'sans-serif'],
-        body: ['Source Sans Pro', 'sans-serif'],
+        body: ['Source Sans 3', 'sans-serif'],
         comic: ['var(--font-comic)', 'cursive'],
       },
       boxShadow: {

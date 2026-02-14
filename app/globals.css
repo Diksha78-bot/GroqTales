@@ -41,7 +41,7 @@
   --font-display: 'Permanent Marker', cursive;
   --font-impact: 'Big Shoulders Display', sans-serif;
   --font-subheading: 'Roboto Condensed', sans-serif;
-  --font-body: 'Source Sans Pro', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
   --font-comic: 'Comic Neue', cursive;
 
   /* Pulp Noir Color Palette */
@@ -177,10 +177,6 @@
     box-shadow: 4px 4px 0px #8B0000;
   }
 
-  .comic-card:hover {
-    transform: translateY(-4px);
-  }
-
   /* Pulp Noir - Halftone Overlay */
   .halftone {
     background-image: radial-gradient(circle, #000 0.5px, transparent 0.5px);
@@ -241,6 +237,8 @@
   .comic-card:hover {
     animation: comic-glow 2s infinite ease-in-out;
   }
+
+  /* Consolidated single hover behavior: animation only */
 
   /* Smooth scroll utilities */
   .smooth-scroll {
