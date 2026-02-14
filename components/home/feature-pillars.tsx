@@ -1,5 +1,7 @@
 'use client';
 
+import { FeaturePillarCard } from './feature-pillar-card';
+
 export function FeaturePillars() {
   const features = [
     {
@@ -19,17 +21,14 @@ export function FeaturePillars() {
   return (
     <div className="grid grid-cols-1 gap-6">
       {features.map((feature, index) => (
-        <div
+        <FeaturePillarCard
           key={index}
-          className="comic-card group hover:-translate-y-1 transition-transform"
-        >
-          <h4 className="font-display text-3xl mb-1 text-primary uppercase">
-            {feature.title}
-          </h4>
-          <p className="font-subheading font-bold text-lg leading-snug uppercase">
-            {feature.description}
-          </p>
-        </div>
+          title={feature.title}
+          description={feature.description}
+          icon={null}
+          backgroundColor="bg-card"
+          darkModeBackgroundColor="dark:bg-slate-800/50"
+        />
       ))}
     </div>
   );

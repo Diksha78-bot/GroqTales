@@ -111,7 +111,8 @@ export function HeroSection({
             </a>
             <button
               onClick={connectWallet}
-              className="font-display text-lg md:text-xl px-12 py-4 uppercase font-bold cursor-pointer transition-all"
+              disabled={!connectWallet}
+              className="font-display text-lg md:text-xl px-12 py-4 uppercase font-bold cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
                 backgroundColor: '#E5E5E5',
                 color: '#050505',
@@ -119,10 +120,12 @@ export function HeroSection({
                 boxShadow: '6px 6px 0px #000',
               }}
               onMouseEnter={(e) => {
+                if (!connectWallet) return;
                 (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#cccccc';
                 (e.currentTarget as HTMLButtonElement).style.boxShadow = '8px 8px 0px #000';
               }}
               onMouseLeave={(e) => {
+                if (!connectWallet) return;
                 (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#E5E5E5';
                 (e.currentTarget as HTMLButtonElement).style.boxShadow = '6px 6px 0px #000';
               }}

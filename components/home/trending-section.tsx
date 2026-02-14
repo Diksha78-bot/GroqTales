@@ -4,6 +4,8 @@
 
 'use client';
 
+import Link from 'next/link';
+
 export function TrendingSection() {
   const stories = [
     {
@@ -77,16 +79,16 @@ export function TrendingSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b-4 border-primary pb-6">
           <div>
-            <h2 className="text-7xl text-white font-display uppercase mb-2">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl text-white font-display uppercase mb-2">
               TRENDING STORIES
             </h2>
             <p className="font-subheading font-bold text-xl text-primary uppercase tracking-wider">
               Discover the most popular stories on GroqTales
             </p>
           </div>
-          <a href="#" className="font-display text-3xl text-primary hover:text-white uppercase">
+          <Link href="/nft-gallery" className="font-display text-3xl text-primary hover:text-white uppercase">
             VIEW ALL
-          </a>
+          </Link>
         </div>
 
         {/* Story Grid */}
@@ -163,8 +165,8 @@ export function TrendingSection() {
                 </div>
 
                 {/* View NFT Button */}
-                <a
-                  href="#"
+                <Link
+                  href="/nft-gallery"
                   className="block text-center py-3 font-display text-2xl uppercase cursor-pointer transition-all hover:opacity-80"
                   style={{
                     backgroundColor: '#050505',
@@ -172,7 +174,7 @@ export function TrendingSection() {
                   }}
                 >
                   VIEW NFT
-                </a>
+                </Link>
               </div>
             </div>
           ))}

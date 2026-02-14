@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Big+Shoulders+Display:wght@700;900&family=Roboto+Condensed:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Big+Shoulders+Display:wght@700;900&family=Roboto+Condensed:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -73,8 +73,8 @@
 
   body {
     font-family: var(--font-body);
-    background-color: #050505;
-    color: #E5E5E5;
+    background-color: var(--background);
+    color: var(--foreground);
     overflow-x: hidden;
     position: relative;
   }
